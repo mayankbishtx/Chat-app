@@ -23,7 +23,7 @@ const rooms = new Map<string, RoomMember[]>();
 export function initSocket(httpServer: HTTPServer) {
   const io = new IOServer(httpServer, {
     cors: {
-      origin: process.env.FRONTEND_URL || "http://localhost:3000",
+      origin: process.env.NEXT_FRONTEND_URL || "http://localhost:3000",
       credentials: true,
     },
   });
