@@ -5,15 +5,16 @@ import { useEffect, useRef } from "react";
 
 export default function ThemeToggle() {
     const { theme, toggleTheme } = useThemeStore();
-    const audioRef = useRef(new Audio("/sounds/electic_button.mp3"));
+    const audioRef = useRef<HTMLAudioElement | null>(null);
 
     useEffect(() => {
-        document.documentElement.classList.toggle("dark", theme === "dark");
-    }, [theme]);
+        audioRef.current = new Audio("/sounds/electic_button.mp3");
+    }, []);
 
     function playAudio() {
-        audioRef.current.currentTime = 0;
-        audioRef.current.play();
+        if (!audioRef.current) return;
+            audioRef.current.currentTime = 0;
+            audioRef.current.play();
     }
 
     function handleToggle() {
